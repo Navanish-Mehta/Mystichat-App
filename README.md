@@ -10,7 +10,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Navanish-Mehta/Mystichat-App">
-    <img src="https://i.ibb.co/n30R7NH/logo.png" alt="Logo" width="100" height="100">
+    <img src="https://i.ibb.co/0j0mCqNX/Mystique.png" alt="Logo" width="100" height="100">
   </a>
   <h3 align="center">MystiChat</h3>
   <p align="center">
