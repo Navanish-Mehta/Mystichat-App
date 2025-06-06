@@ -37,25 +37,26 @@ jobs:
           echo "Build completed"
           echo "Current directory contents:"
           ls -la
-          echo "Checking for out directory..."
-          if [ ! -d "out" ]; then
+          echo "Checking for .next directory..."
+          if [ -d ".next" ]; then
             echo "Creating out directory..."
             mkdir -p out
-            echo "Created out directory"
-            echo "Copying build files to out directory..."
+            echo "Copying build files..."
             cp -r .next/static out/
             cp -r public/* out/ 2>/dev/null || true
-            echo "Created index.html in out directory"
+            echo "Creating index.html..."
             echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/Mystichat-App" /></head></html>' > out/index.html
+            echo "Final out directory contents:"
+            ls -la out
+          else
+            echo "Error: .next directory not found"
+            exit 1
           fi
-          echo "Final out directory contents:"
-          ls -la out
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
-        continue-on-error: true
 
   deploy:
     environment:
