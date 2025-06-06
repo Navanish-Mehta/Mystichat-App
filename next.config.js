@@ -9,6 +9,7 @@ const nextConfig = {
   },
   trailingSlash: true,
   distDir: 'out',
+  assetPrefix: '/Mystichat-App/',
 }
 
 module.exports = nextConfig

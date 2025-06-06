@@ -32,17 +32,24 @@ jobs:
       
       - name: Build with Next.js
         run: |
+          echo "Starting build process..."
           npm run build
           echo "Build completed"
+          echo "Current directory contents:"
           ls -la
-          if [ -d "out" ]; then
-            echo "out directory exists"
-            ls -la out
-          else
-            echo "out directory not found"
-            mkdir out
+          echo "Checking for out directory..."
+          if [ ! -d "out" ]; then
+            echo "Creating out directory..."
+            mkdir -p out
             echo "Created out directory"
+            echo "Copying build files to out directory..."
+            cp -r .next/static out/
+            cp -r public/* out/ 2>/dev/null || true
+            echo "Created index.html in out directory"
+            echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/Mystichat-App" /></head></html>' > out/index.html
           fi
+          echo "Final out directory contents:"
+          ls -la out
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
